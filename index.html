@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">create client</button>
+  <script>
+    const btn = document.getElementById('btn')
+    const eventSource = new EventSource('/events')
+    btn.addEventListener('click', () => {
+      fetch('/item', { method: 'POST', body: {} })
+    })
+    eventSource.onmessage = (event) => {
+      const items = JSON.parse(event.data)
+      alert(items.length)
+      console.log(event.data)
+    }
+  </script>
+</body>
+</html>
